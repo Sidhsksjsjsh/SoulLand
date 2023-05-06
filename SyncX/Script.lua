@@ -37,6 +37,19 @@ game:GetService("ReplicatedStorage").RmEvent:FindFirstChild("Status/Data").CastS
 end
 end)
 
+T1:AddSwitch("Spam random skill", function(bool)
+_G.SkillRandom = bool
+
+while wait() do
+if _G.SkillRandom == false then break end
+local args = {
+    [1] = math.random(6)
+}
+
+game:GetService("ReplicatedStorage").RmEvent:FindFirstChild("Status/Data").CastSkill:FireServer(unpack(args))
+end
+end)
+
 skill:Add("1")
 skill:Add("2")
 skill:Add("3")
