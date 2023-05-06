@@ -10,8 +10,38 @@ local Window = library:AddWindow("Sync X - Cheating Tool",
 
 local speaker = game.Player.LocalPlayer
 
+local Boss_1 = script.Parent
+local distance_Boss_1 = 0
+local distance_Boss_2 = 0
+local distance_Boss_3 = 0
+local distance_Boss_4 = 0
+local distance_Boss_5 = 0
+
 local T1 = Window:AddTab("Attack")
 local T2 = Window:AddTab("Coin & sword")
+
+local BossDistance = T1:AddConsole({
+    ["y"] = 50,
+    ["source"] = "",
+})
+
+function set(Table, content)
+    Table:Set(content)
+end
+
+while wait() do
+    if player then
+        local playerPosition = speaker.Character and speaker.Character:FindFirstChild("HumanoidRootPart") and speaker.Character.HumanoidRootPart.Position
+        if playerPosition then
+            distance_Boss_1 = (playerPosition - Boss_1.Position).magnitude
+            distance_Boss_2 = (playerPosition - Boss_2.Position).magnitude
+            distance_Boss_3 = (playerPosition - Boss_3.Position).magnitude
+            distance_Boss_4 = (playerPosition - Boss_4.Position).magnitude
+            distance_Boss_5 = (playerPosition - Boss_5.Position).magnitude
+            set(BossDistance,"Boss Distance \nBoss 1:  " .. distance_Boss_1 .. " \nBoss 2: " .. distance_Boss_2 .. " \nBoss 3: " .. distance_Boss_3 .. " \nBoss 4: " .. distance_Boss_4 .. " \nBoss 5: " .. distance_Boss_5
+        end
+    end
+end
 
 T1:AddSwitch("Attack", function(bool)
     _G.Tog_Att = bool
@@ -56,6 +86,22 @@ game:GetService("ReplicatedStorage").RmEvent:FindFirstChild("Status/Data").CastS
 speaker.Character:FindFirstChildOfClass('Humanoid').HipHeight = 3
 end
 end)
+
+--[[
+T1:AddSwitch("Raid boss with skill", function(bool)
+_G.SkillRandom = bool
+
+while wait(_G.SkillCD) do
+if _G.SkillRandom == false then break end
+local args = {
+    [1] = math.random(6)
+}
+
+game:GetService("ReplicatedStorage").RmEvent:FindFirstChild("Status/Data").CastSkill:FireServer(unpack(args))
+speaker.Character:FindFirstChildOfClass('Humanoid').HipHeight = 3
+end
+end)
+--]]
 
 skill:Add("1")
 skill:Add("2")
