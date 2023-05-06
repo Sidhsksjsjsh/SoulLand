@@ -8,6 +8,8 @@ local Window = library:AddWindow("Sync X - Cheating Tool",
         toggle_key = Enum.KeyCode.RightShift,
     })
 
+local speaker = game.Player.LocalPlayer
+
 local T1 = Window:AddTab("Attack")
 local T2 = Window:AddTab("Coin & sword")
 
@@ -37,16 +39,21 @@ game:GetService("ReplicatedStorage").RmEvent:FindFirstChild("Status/Data").CastS
 end
 end)
 
+T1:AddTextBox("Cooldown skill", function(v)
+_G.SkillCD = v or 1
+end)
+
 T1:AddSwitch("Spam random skill", function(bool)
 _G.SkillRandom = bool
 
-while wait() do
+while wait(_G.SkillCD) do
 if _G.SkillRandom == false then break end
 local args = {
     [1] = math.random(6)
 }
 
 game:GetService("ReplicatedStorage").RmEvent:FindFirstChild("Status/Data").CastSkill:FireServer(unpack(args))
+speaker.Character:FindFirstChildOfClass('Humanoid').HipHeight = 3
 end
 end)
 
