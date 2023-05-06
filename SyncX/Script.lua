@@ -55,6 +55,10 @@ while wait() do
 end
 --]]
 
+function teleport(part)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(part.CFrame)
+end
+
 T1:AddSwitch("Attack", function(bool)
     _G.Tog_Att = bool
 
@@ -99,21 +103,43 @@ speaker.Character:FindFirstChildOfClass('Humanoid').HipHeight = 3
 end
 end)
 
---[[
-T1:AddSwitch("Raid boss with skill", function(bool)
-_G.SkillRandom = bool
+local Boss_A1 = T1:AddDropdown("Select boss", function(object)
+   _G.Boss_1 = object
+end)
 
-while wait(_G.SkillCD) do
-if _G.SkillRandom == false then break end
-local args = {
-    [1] = math.random(6)
-}
+Boss_A1:Add("Boss 1")
+Boss_A1:Add("Boss 2")
+Boss_A1:Add("Boss 3")
+Boss_A1:Add("Boss 4")
+Boss_A1:Add("Boss 5")
+Boss_A1:Add("Boss 6")
 
-game:GetService("ReplicatedStorage").RmEvent:FindFirstChild("Status/Data").CastSkill:FireServer(unpack(args))
-speaker.Character:FindFirstChildOfClass('Humanoid').HipHeight = 3
+T1:AddSwitch("Raid boss (turn on spam random skill first)", function(bool)
+_G.RaidBoss = bool
+
+while wait() do
+if _G.RaidBoss == false then break end
+if _G.Boss_1 == "Boss 1" then
+teleport(game:GetService("Workspace").CloneStageBoss.Boss1.Torso.ChestPlate)
+end
+if _G.Boss_1 == "Boss 2" then
+teleport(game:GetService("Workspace").CloneStageBoss.Boss2.Torso)
+end
+if _G.Boss_1 == "Boss 3" then
+teleport(game:GetService("Workspace").CloneStageBoss.Boss3.UpperTorso)
+end
+if _G.Boss_1 == "Boss 4" then
+teleport(game:GetService("Workspace").CloneStageBoss.Boss4.Torso)
+end
+if _G.Boss_1 == "Boss 5" then
+teleport(game:GetService("Workspace").CloneStageBoss.Boss5.HumanoidRootPart)
+end
+if _G.Boss_1 == "Boss 6" then
+teleport(game:GetService("Workspace").CloneStageBoss.Boss6.Torso)
+end
 end
 end)
---]]
+
 
 skill:Add("1")
 skill:Add("2")
