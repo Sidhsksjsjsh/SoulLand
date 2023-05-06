@@ -10,12 +10,19 @@ local Window = library:AddWindow("Sync X - Cheating Tool",
 
 local speaker = game.Player.LocalPlayer
 
-local Boss_1 = script.Parent
+local Boss_1 = game:GetService("Workspace").CloneStageBoss.Boss1
+local Boss_2 = game:GetService("Workspace").CloneStageBoss.Boss2
+local Boss_3 = game:GetService("Workspace").CloneStageBoss.Boss3
+local Boss_4 = game:GetService("Workspace").CloneStageBoss.Boss4
+local Boss_5 = game:GetService("Workspace").CloneStageBoss.Boss5
+local Boss_6 = game:GetService("Workspace").CloneStageBoss.Boss6
+
 local distance_Boss_1 = 0
 local distance_Boss_2 = 0
 local distance_Boss_3 = 0
 local distance_Boss_4 = 0
 local distance_Boss_5 = 0
+local distance_Boss_6 = 0
 
 local T1 = Window:AddTab("Attack")
 local T2 = Window:AddTab("Coin & sword")
@@ -30,7 +37,7 @@ function set(Table, content)
 end
 
 while wait() do
-    if player then
+    if speaker then
         local playerPosition = speaker.Character and speaker.Character:FindFirstChild("HumanoidRootPart") and speaker.Character.HumanoidRootPart.Position
         if playerPosition then
             distance_Boss_1 = (playerPosition - Boss_1.Position).magnitude
@@ -38,7 +45,8 @@ while wait() do
             distance_Boss_3 = (playerPosition - Boss_3.Position).magnitude
             distance_Boss_4 = (playerPosition - Boss_4.Position).magnitude
             distance_Boss_5 = (playerPosition - Boss_5.Position).magnitude
-            set(BossDistance,"Boss Distance \nBoss 1:  " .. distance_Boss_1 .. " \nBoss 2: " .. distance_Boss_2 .. " \nBoss 3: " .. distance_Boss_3 .. " \nBoss 4: " .. distance_Boss_4 .. " \nBoss 5: " .. distance_Boss_5
+            distance_Boss_6 = (playerPosition - Boss_6.Position).magnitude
+            set(BossDistance, "Boss Distance \nBoss 1:  " .. distance_Boss_1 .. " \nBoss 2: " .. distance_Boss_2 .. " \nBoss 3: " .. distance_Boss_3 .. " \nBoss 4: " .. distance_Boss_4 .. " \nBoss 5: " .. distance_Boss_5 .. " \nBoss 6: " .. distance_Boss_6
         end
     end
 end
