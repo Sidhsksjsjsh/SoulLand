@@ -56,7 +56,7 @@ end
 --]]
 
 function teleport(part)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(part.CFrame)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(part.Position)
 end
 
 T1:AddSwitch("Attack", function(bool)
@@ -99,7 +99,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").RmEvent:FindFirstChild("Status/Data").CastSkill:FireServer(unpack(args))
-speaker.Character:FindFirstChildOfClass('Humanoid').HipHeight = 3
+game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').HipHeight = 3
 end
 end)
 
