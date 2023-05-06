@@ -8,7 +8,7 @@ local Window = library:AddWindow("Sync X - Cheating Tool",
         toggle_key = Enum.KeyCode.RightShift,
     })
 
-local speaker = game.Player.LocalPlayer
+local speaker = game.Players.LocalPlayer
 
 --[[
 local Boss_1 = game:GetService("Workspace").CloneStageBoss.Boss1
