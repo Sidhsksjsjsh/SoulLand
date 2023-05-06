@@ -10,6 +10,7 @@ local Window = library:AddWindow("Sync X - Cheating Tool",
 
 local speaker = game.Player.LocalPlayer
 
+--[[
 local Boss_1 = game:GetService("Workspace").CloneStageBoss.Boss1
 local Boss_2 = game:GetService("Workspace").CloneStageBoss.Boss2
 local Boss_3 = game:GetService("Workspace").CloneStageBoss.Boss3
@@ -23,6 +24,7 @@ local distance_Boss_3 = 0
 local distance_Boss_4 = 0
 local distance_Boss_5 = 0
 local distance_Boss_6 = 0
+--]]
 
 local T1 = Window:AddTab("Attack")
 local T2 = Window:AddTab("Coin & sword")
@@ -36,6 +38,7 @@ function set(Table, content)
     Table:Set(content)
 end
 
+--[[
 while wait() do
     if speaker then
         local playerPosition = speaker.Character and speaker.Character:FindFirstChild("HumanoidRootPart") and speaker.Character.HumanoidRootPart.Position
@@ -50,6 +53,7 @@ while wait() do
         end
     end
 end
+--]]
 
 T1:AddSwitch("Attack", function(bool)
     _G.Tog_Att = bool
